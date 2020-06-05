@@ -19,9 +19,9 @@ public class StreamCollectorsExercise
 		return playerList.stream().collect(Collectors.groupingBy(player -> player.getCountry().getCountryName()));
 	}
 	
-	public Map<String, List<Player>> getPlayerNamesByCountry()
+	public Map<String, List<String>> getPlayerNamesByCountry()
 	{		
-		return playerList.stream().filter(player -> player.getMatchesPlayed()>100).collect(Collectors.groupingBy(player -> player.getCountry().getCountryName()));
+		return playerList.stream().filter(player -> player.getMatchesPlayed()>100).collect(Collectors.groupingBy(player -> player.getCountry().getCountryName(), Collectors.mapping(Player::getPlayerName, Collectors.toList())));
 	}
 	
 	public Map<Object, Long> getTotalPlayersByCountry()
